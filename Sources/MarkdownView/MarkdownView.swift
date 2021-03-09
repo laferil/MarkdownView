@@ -86,7 +86,7 @@ open class MarkdownView: UIView {
     }
   }
     
-    func getHtml(completion: @escaping ((String?) -> ())) {
+    public func getHtml(completion: @escaping ((String?) -> ())) {
         self.webView!.evaluateJavaScript("document.body.innerHTML") { html, err in
             if let html = html as? String {
                 completion(html)
