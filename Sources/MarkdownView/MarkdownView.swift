@@ -85,6 +85,16 @@ open class MarkdownView: UIView {
       // TODO: raise error
     }
   }
+    
+    func getHtml(completion: @escaping ((String?) -> ())) {
+        self.webView!.evaluateJavaScript("document.body.innerHTML") { html, err in
+            if let html = html as? String {
+                completion(html)
+            } else {
+                completion(nil)
+            }
+        }
+    }
 
   private func escape(markdown: String) -> String? {
     return markdown.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)
